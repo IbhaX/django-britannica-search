@@ -1,0 +1,58 @@
+/* Hide scrollbar for Chrome, Safari, and Edge */
+.card-text::-webkit-scrollbar {
+    display: none;
+}
+
+/* Optional: Let's assume you want to style the scrollbar for Firefox */
+.card-text {
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Optional: You can add some styles to the container if needed */
+.card-text .detail {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.card-text {
+    max-height: 200px;
+    overflow: auto;
+}
+
+body {
+    background: red;
+}
+
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    display: none; /* Initially hide the overlay */
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+    .card {
+      min-width: 500px; /* Adjust the min-width value as needed for mobile view */
+    }
+  }

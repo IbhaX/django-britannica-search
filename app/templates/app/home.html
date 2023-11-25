@@ -1,0 +1,36 @@
+{% extends 'index/base.html' %}
+
+{% block content %}
+  <div class="container mt-5 mb-5 text-center">
+    <div class="card shadow p-3 mx-auto">
+      <h1>Wikipedia Search</h1>
+      <form method="post" action="{% url 'app:search' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary" id="searchBtn">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Your Searches</h1>
+    <div class="row">
+      {% if not items %}
+      <p><em>No Searches Yet!!</em></p>
+      {% endif %}
+      {% for item in items %}
+        <div class="col-md-6 mb-3">
+          <div class="card shadow mb-5" style="width: 95%; height: 95%;">
+            <img src="{% if item.image %} {{ item.image }} {% else %} https://placehold.co/500x500?text=No%20Image {% endif %}" width="500" height="500" class="card-img-top" alt="Fissure in Sandstone"/>
+            <div class="card-body">
+              <h5 class="card-title"><a href="{% url 'app:detail' item.id %}" data-mdb-ripple-init>{{ item.title }}</a></h5>
+              <p><em>{{ item.query }}</em></p>
+              <p class="card-text">{{ item.summary }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}
